@@ -83,7 +83,7 @@ export interface UserPost {
 }
 
 
-// Запит на отримання користувача /api/user/{id} Get
+// Запит на отримання користувача /api/user/{email} Get
 export interface User {
     name: string, // Прізвище ім'я по-батькові
     lastName: string,
@@ -97,4 +97,11 @@ export interface User {
     totalCreatedProjects: number, // всього створив проєктів
     totalProjectsAsVolunteer: number,
     donate: number // два знака після коми 
+}
+
+export interface Connection {
+    userId: number,
+    projectId: number,
+    status: number, // 0 - volunteer, 1 - sponsor
+    donate: number | null, // optional, два знака після коми
 }
