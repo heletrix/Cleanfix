@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     result: any[] = [];        
 
     constructor(private hserv: HomeService) {
-        this.hserv.GetHomeMessage().subscribe(response => this.result = response);
+       // this.hserv.GetHomeMessage().subscribe(response => this.result = response);
     }
 
     ngOnInit(): void {

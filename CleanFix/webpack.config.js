@@ -1,7 +1,8 @@
 ﻿var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/main.ts'),
@@ -33,5 +34,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
+        // new ExtractTextPlugin({
+        //     filename: './src/app/css/bootstrap.min.css'
+        // }),
+        // new ExtractTextPlugin({
+        //     filename: './src/app/css/animate.min.css'
+        // }),
+        // new ExtractTextPlugin({
+        //     filename: './src/app/css/font-awesome.min.css'
+        // }),
+        // new ExtractTextPlugin({
+        //     filename: './src/app/css/style.css'
+        // })
     ]
 };
