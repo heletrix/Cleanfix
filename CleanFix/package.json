@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "webpack-dev-server --hot --open",
     "webpack": "webpack --progress",
     "serve": "webpack-dev-server --host localhost --port 3000 --inline --progress",
     "compile": "tsc --rootDir src --outDir wwwroot",
