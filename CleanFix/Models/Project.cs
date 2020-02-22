@@ -19,17 +19,21 @@ namespace CleanFix.Models
 
         public string MainPhoto { get; set; }
 
-        public decimal Budget { get; set; }
+        public decimal? Budget { get; set; }
         
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
 
         public string District { get; set; }
 
         public string Location { get; set;  }
 
-        public decimal Latitude { get; set; }
+        public decimal? Latitude { get; set; }
 
-        public decimal Longitude { get; set; }
+        public decimal? Longitude { get; set; }
+
+        public decimal? TotalDonate { get; set; }
+
+        public int? TotalVolunteers { get; set; }
 
     }
 }
