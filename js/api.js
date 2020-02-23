@@ -1,5 +1,5 @@
-let host = 'https://cleanfix.herokuapp.com';
-//let host = 'http://localhost:63996'
+//let host = 'https://cleanfix.herokuapp.com';
+let host = 'http://localhost:63996'
 
 $(document).ready(function(){
     if ($('#accordion')[0]) {
@@ -231,10 +231,18 @@ $('.myBtn').click(function(event)
  });
 
 
-$('.close, .registration').click(function(event)
+$('.close').click(function(event)
  {
   modal.style.display = "none";
  });
+
+ $('.registration').click(function(event)
+ {
+  modal.style.display = "none";
+
+  alert('Запит надіслано');
+ });
+
 $(window).click(function(event)
  {
   if (event.target == modal) {
