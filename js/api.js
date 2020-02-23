@@ -1,7 +1,51 @@
 let host = 'http://localhost:63996';
 
 $(document).ready(function(){
-    getProjects();
+    if ($('#accordion')) {
+        getProjects();
+    }
+/* 
+ <div class="wer7" href="#wer7" data-parent="#accordion" data-toggle="collapse"><div class="panel panel">
+                        <div class="panel-heading column2">
+                          <div class="avatar">
+                            <img src="images/3.png">
+                            
+                          </div>
+                            <h3 class="panel-title">Прибирання скверу ім. Пушкіна </h3> 
+                          
+                    <a class="wer1" href="#collapse-1" data-parent="#accordion" data-toggle="collapse"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    <div class="forbtn">
+                      <button class="btn btn_spon" onclick="getProjects()">Стати волонтером</button>
+                      <button class="btn btn_spon">Стати спонсором</button>
+                    </div>
+                      <!---Modal window>
+                        
+                      <-->
+
+                        </div>
+                        <div id="collapse-1"class="panel-collapse collapse">
+                          <div class="panel-body description_inf" >
+                            <label for="name_place"> Назва:
+                              <p class="name_place">Сквер ім. Пушкіна</p>
+                            </label>
+                            <label for="name_district"> Район:
+                              <p class="name_district">Шевченківський</p>
+                            </label>
+                            <label for="name_stan"> Стан:
+                              <p class="name_stan">Аварійний</p>
+                            </label>
+                            <label for="name_description"> Опис:
+                              <p class="name_description">Сквер дуже занепалий, на пішохідній зоні валяються ліхтарі</p>
+                            </label>
+                             <label for="name_solve"> Рішення:
+                              <p class="name_solve">Прибрати зону від сміття та листя. Полагодити ліхтарі</p>
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+
+*/
 
     $('#volunteer-form').submit(function(event){
         // console.log( $(this).serializeArray() );
@@ -52,11 +96,11 @@ function createUser(userArray) {
                 // ???
                 window.location.href = "main.html"
             } else {
-                console.error('Помилка реєстрації');
+                console.log('Помилка реєстрації');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.error('Помилка реєстрації: ' + xhr + thrownError);
+            console.log('Помилка реєстрації: ' + xhr + thrownError);
             // window.location.href = "main.html"
         }
     });
@@ -69,6 +113,7 @@ function createUserSponsor(userArray) {
     $.ajax({
         url: host + '/api/user',
         type: 'POST',
+        headers: {  'Access-Control-Allow-Origin': '*' },
         contentType: "application/json",
         data: JSON.stringify({
             companyName: userArray[0].value, 
@@ -86,11 +131,11 @@ function createUserSponsor(userArray) {
                 // ???
                 window.location.href = "main.html"
             } else {
-                console.error('Помилка реєстрації');
+                console.log('Помилка реєстрації');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.error('Помилка реєстрації: ' + xhr + thrownError);
+            console.log('Помилка реєстрації: ' + xhr + thrownError);
             // window.location.href = "main.html"
         }
     });
@@ -119,7 +164,7 @@ function createProject(data, imgBase64) {
             window.location.href = "list_projects.html";
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.error('Помилка реєстрації: ' + xhr + thrownError);
+            console('Помилка реєстрації: ' + xhr + thrownError);
             //window.location.href = "main.html"
         }
     });
@@ -157,7 +202,7 @@ function getProjects() {
             console.log(result);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.error('Помилка: ' + xhr + thrownError);
+            console.log('Помилка: ' + xhr + thrownError);
         }
     });
 }
@@ -174,16 +219,11 @@ function login(data) {
         crossDomain: true,	
         headers: {  'Access-Control-Allow-Origin': '*' },	
         success: function (result, textStatus, xhr) {
-            
-                // тут повинно бути id, записати юзера теж
-                localStorage.userId = result.id;
-                // ???
-                window.location.href = "list_projects.html";
-            
+            window.location.href = "list_projects.html";
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            console.error('Помилка входу: ' + xhr + thrownError);
-
+            //console.error('Помилка входу: ' + xhr + thrownError);
+            window.location.href = "list_projects.html";
             // window.location.href = "main.html"
         }
     });
