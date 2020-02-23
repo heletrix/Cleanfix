@@ -1,8 +1,8 @@
 ﻿var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+//var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/main.ts'),
@@ -24,7 +24,10 @@ module.exports = {
             { test: /\.ts$/, loaders: 'awesome-typescript-loader' },
             { test: /\.html$/, loaders: 'html-loader' },
             { test: /\.css$/, loaders: 'css-loader' },
-            { test: /\.css$/, loaders: ExtractTextPlugin.extract({ fallback: "style-loader", use: "css-loader" }) }
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+              } 
         ]
     },
     resolve: {
@@ -33,10 +36,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
-        })
-        // new ExtractTextPlugin({
-        //     filename: './src/app/css/bootstrap.min.css'
-        // }),
+        }),
+        new MiniCssExtractPlugin({filename: 'bootstrap.css'})
         // new ExtractTextPlugin({
         //     filename: './src/app/css/animate.min.css'
         // }),

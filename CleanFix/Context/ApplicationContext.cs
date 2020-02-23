@@ -15,6 +15,7 @@ namespace CleanFix.Context
 
         public DbSet<Volunteer> Volunteers { get; set; }
 
+
         public ApplicationContext()
         {
             Database.EnsureCreated();
