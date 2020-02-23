@@ -11,7 +11,7 @@ namespace CleanFix.Models
         public string Name { get; set; } // required only for person
         public string LastName { get; set; }  // required only for person
         public string MiddleName { get; set; } // required only for person
-        public string Type { get; set; } // 0 - person, 1 - company
+        public int Type { get; set; } // 0 - person, 1 - company
         [Required]
         public string Email { get; set; }
         public string PhoneNumber { get; set; } // optional
