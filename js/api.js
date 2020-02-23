@@ -16,11 +16,15 @@ $(document).ready(function(){
     })
 
     $('#create-project-form').submit(function(event){
-        console.log(document.querySelector('img').src);
+        // console.log(document.querySelector('img').src);
         createProject(serializeFormJSON($(this)), document.querySelector('img').src) 
         event.preventDefault();
     })
 
+    $('#login-form').submit(function(event){
+        login(serializeFormJSON($(this))) 
+        event.preventDefault();
+    })
 });
 
 // create user volunteer
@@ -147,6 +151,32 @@ function previewFile() {
         $('img').hide()
     }
   }
+
+// login user
+function login(data) {
+    $.ajax({
+        url: host + '/api/user',
+        type: 'GET',
+        contentType: "application/json",
+        data: {
+            email: data.email
+        },
+        crossDomain: true,		
+        success: function (result, textStatus, xhr) {
+            
+                // тут повинно бути id, записати юзера теж
+                localStorage.userId = result.id;
+                // ???
+                window.location.href = "list_projects.html";
+            
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.error('Помилка входу: ' + xhr + thrownError);
+
+            // window.location.href = "main.html"
+        }
+    });
+}
 
 function serializeFormJSON (data) {
     var o = {};
