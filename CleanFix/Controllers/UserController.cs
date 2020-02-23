@@ -11,20 +11,28 @@ namespace CleanFix.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
-        public ActionResult Add(User user)
+        public ActionResult Add([FromBody]User user)
         {
+            if (string.IsNullOrWhiteSpace(user.Email))
+            {
+                return NotFound();
+            }
             using (var db = new ApplicationContext())
             {
                 try
                 {
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    var createdUserId = db.Users.FirstOrDefault(x => x.Email.Equals(user.Email));
-                    return createdUserId == null ? (ActionResult)NotFound() : Ok(createdUserId.Id);
+                    if (db.Users.FirstOrDefault(x => x.Email.Equals(user.Email)) == null)
+                    {
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        var createdUserId = db.Users.FirstOrDefault(x => x.Email.Equals(user.Email));
+                        return createdUserId == null ? (ActionResult)NotFound() : Ok(createdUserId.Id);
+                    }
+                    return StatusCode(409, $"User with email {user.Email} already exists.");
                 }
                 catch (Exception e)
                 {
-                    return StatusCode(500, "Internal server error");
+                    return StatusCode(500, "Internal server error " + e);
                 }
             }
         }
