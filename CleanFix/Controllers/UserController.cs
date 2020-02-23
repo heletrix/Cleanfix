@@ -47,8 +47,8 @@ namespace CleanFix.Controllers
             }
             using (var db = new ApplicationContext())
             {
-                var user = db.Users?.FirstOrDefault(x => x.Email.Equals(email));
-                return user == null ? (ActionResult) NotFound() : Ok(user);
+                var user = db.Users.FirstOrDefault(x => x.Email.Equals(email));
+                return user == null ? StatusCode(404, $"User with email {user.Email} not found.") : Ok(user);
             }
         }
     }
