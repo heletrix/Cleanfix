@@ -13,7 +13,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/parallax.min.js"></script>
     <script src="js/wow.js"></script>
-  
+    <script src="js/api.js"></script>
 </head>
 <body>
   
@@ -41,7 +41,7 @@
         
        <div class="main_listprojects container">
         <div class="buttons">
-            <button class="btn btn_add"> Додати проект</button>
+            <button class="btn btn_add" onclick="window.location.href = './create-project.html';" > Додати проект</button>
          </div>
           <div class="col-md-12">
                 <div id="accordion" class="panel-group">
@@ -55,7 +55,7 @@
                           
 <a class="wer1" href="#collapse-1" data-parent="#accordion" data-toggle="collapse"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     <div class="forbtn">
-                      <button class="btn btn_spon">Стати волонтером</button>
+                      <button class="btn btn_spon" onclick="getProjects()">Стати волонтером</button>
                       <button class="btn btn_spon">Стати спонсором</button>
                     </div>
                       <!---Modal window>

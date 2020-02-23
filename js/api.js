@@ -1,7 +1,7 @@
-let host = 'http://localhost:63995';
-// var mainPhotoForCreatedProject = null;
+let host = 'http://localhost:63996';
 
 $(document).ready(function(){
+    getProjects();
 
     $('#volunteer-form').submit(function(event){
         // console.log( $(this).serializeArray() );
@@ -32,6 +32,7 @@ function createUser(userArray) {
     $.ajax({
         url: host + '/api/user',
         type: 'POST',
+        headers: {  'Access-Control-Allow-Origin': '*' },
         contentType: "application/json",
         data: JSON.stringify({
             name: userArray[1].value, // Прізвище ім'я по-батькові
@@ -95,14 +96,13 @@ function createUserSponsor(userArray) {
     });
 }
 
-
 // create project
 function createProject(data, imgBase64) {
     $.ajax({
         url: host + '/api/project',
         type: 'POST',
+        headers: {  'Access-Control-Allow-Origin': '*' },
         contentType: "application/json",
-        dataType: "json",
         data: JSON.stringify({
             name: data.name,
             description: data.description,
@@ -116,19 +116,11 @@ function createProject(data, imgBase64) {
         }),
         crossDomain: true,		
         success: function (result, textStatus, xhr) {
-
-            if (xhr.status === 200) {
-                // тут повинно бути id, записати юзера теж
-                localStorage.userId = result
-                // ???
-                window.location.href = "main.html"
-            } else {
-                console.error('Помилка реєстрації');
-            }
+            window.location.href = "list_projects.html";
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.error('Помилка реєстрації: ' + xhr + thrownError);
-            // window.location.href = "main.html"
+            //window.location.href = "main.html"
         }
     });
 }
@@ -153,6 +145,23 @@ function previewFile() {
     }
   }
 
+function getProjects() {
+    $.ajax({
+        url: host + '/api/project',
+        type: 'GET',
+        headers: {  'Access-Control-Allow-Origin': '*' },
+        contentType: "application/json",
+        data: {},
+        crossDomain: true,		
+        success: function (result, textStatus, xhr) {
+            console.log(result);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.error('Помилка: ' + xhr + thrownError);
+        }
+    });
+}
+
 // login user
 function login(data) {
     $.ajax({
@@ -162,7 +171,8 @@ function login(data) {
         data: {
             email: data.email
         },
-        crossDomain: true,		
+        crossDomain: true,	
+        headers: {  'Access-Control-Allow-Origin': '*' },	
         success: function (result, textStatus, xhr) {
             
                 // тут повинно бути id, записати юзера теж
