@@ -22,10 +22,20 @@ namespace CleanFix
 
 		public IConfiguration Configuration { get; }
 
+		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services) {
 			//services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"]));
 			services.AddMvc(option => option.EnableEndpointRouting = false);
+
+			services.AddCors(options =>
+			{
+				options.AddPolicy(MyAllowSpecificOrigins,
+					builder => builder.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader());
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,9 +49,10 @@ namespace CleanFix
 					await next();
 				}
 			});
-            app.UseCors(builder => builder.AllowAnyOrigin());
 			app.UseMvcWithDefaultRoute();
-			
+
+			app.UseCors(MyAllowSpecificOrigins);
+
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 		}
