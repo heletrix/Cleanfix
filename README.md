@@ -1,7 +1,11 @@
 # Cleanfix
 Project for INT20H
 
-Стек технологій:
+**Про проект:** Проект, що змінє місто і світ.
+
+**Посилання:** https://cleanfix.herokuapp.com/
+
+**Стек технологій:**
 
 Backend: ASP .NET Core, EF Core (C#, CodeFirst);
 Frontend: Bootstrap 4.2.1 + jQuery 3.3.1;
