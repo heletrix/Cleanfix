@@ -1,51 +1,10 @@
-let host = 'http://localhost:63996';
+// let host = 'https://cleanfix.herokuapp.com';
+let host = 'http://localhost:63996'
 
 $(document).ready(function(){
-    if ($('#accordion')) {
+    if ($('#accordion')[0]) {
         getProjects();
     }
-/* 
- <div class="wer7" href="#wer7" data-parent="#accordion" data-toggle="collapse"><div class="panel panel">
-                        <div class="panel-heading column2">
-                          <div class="avatar">
-                            <img src="images/3.png">
-                            
-                          </div>
-                            <h3 class="panel-title">Прибирання скверу ім. Пушкіна </h3> 
-                          
-                    <a class="wer1" href="#collapse-1" data-parent="#accordion" data-toggle="collapse"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                    <div class="forbtn">
-                      <button class="btn btn_spon" onclick="getProjects()">Стати волонтером</button>
-                      <button class="btn btn_spon">Стати спонсором</button>
-                    </div>
-                      <!---Modal window>
-                        
-                      <-->
-
-                        </div>
-                        <div id="collapse-1"class="panel-collapse collapse">
-                          <div class="panel-body description_inf" >
-                            <label for="name_place"> Назва:
-                              <p class="name_place">Сквер ім. Пушкіна</p>
-                            </label>
-                            <label for="name_district"> Район:
-                              <p class="name_district">Шевченківський</p>
-                            </label>
-                            <label for="name_stan"> Стан:
-                              <p class="name_stan">Аварійний</p>
-                            </label>
-                            <label for="name_description"> Опис:
-                              <p class="name_description">Сквер дуже занепалий, на пішохідній зоні валяються ліхтарі</p>
-                            </label>
-                             <label for="name_solve"> Рішення:
-                              <p class="name_solve">Прибрати зону від сміття та листя. Полагодити ліхтарі</p>
-                            </label>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-
-*/
 
     $('#volunteer-form').submit(function(event){
         // console.log( $(this).serializeArray() );
@@ -94,14 +53,15 @@ function createUser(userArray) {
                 // тут повинно бути id
                 localStorage.userId = result
                 // ???
-                window.location.href = "main.html"
+                window.location.href = "list_projects.html";
             } else {
                 console.log('Помилка реєстрації');
+                window.location.href = "list_projects.html";
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log('Помилка реєстрації: ' + xhr + thrownError);
-            // window.location.href = "main.html"
+            window.location.href = "list_projects.html";
         }
     });
 
@@ -128,14 +88,15 @@ function createUserSponsor(userArray) {
             if (xhr.status === 200) {
                 // тут повинно бути id, записати юзера теж
                 localStorage.userId = result
-                // ???
-                window.location.href = "main.html"
+                window.location.href = "list_projects.html";
             } else {
+                window.location.href = "list_projects.html";
                 console.log('Помилка реєстрації');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log('Помилка реєстрації: ' + xhr + thrownError);
+            window.location.href = "list_projects.html";
             // window.location.href = "main.html"
         }
     });
@@ -165,6 +126,7 @@ function createProject(data, imgBase64) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console('Помилка реєстрації: ' + xhr + thrownError);
+            window.location.href = "list_projects.html";
             //window.location.href = "main.html"
         }
     });
@@ -199,23 +161,95 @@ function getProjects() {
         data: {},
         crossDomain: true,		
         success: function (result, textStatus, xhr) {
-            console.log(result);
+            // console.log(result);
+            let html = " ";
+            let numberWer = 7;
+            let maxNumberWer = 16;
+            for (let i=0; i<result.length; i++) {
+                isImage = false;
+                if (result[i].mainPhoto)
+                    isImage = result[i].mainPhoto.split(';')[0].split('/')[1];
+                
+                // console.log(isImage);
+                html+=`<div class="wer${numberWer}" href="#wer${numberWer}" data-parent="#accordion" data-toggle="collapse"><div class="panel panel">
+                <div class="panel-heading column2">
+                <div class="avatar">
+                <img class="imgProject" src=${isImage ? result[i].mainPhoto : 'images/default.jpg'}> 
+                </div>
+                <h3 class="panel-title"> ${result[i].name ? result[i].name : 'Інформація відсутня'} </h3> 
+                <a class="wer1" href="#collapse-${result[i].id}" data-parent="#accordion" data-toggle="collapse"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                <div class="forbtn">
+                  <button class="btn btn_spon" onclick="getProjects()">Стати волонтером</button>
+                  <button class="myBtn btn btn_spon">Стати спонсором</button>
+                </div>
+                  <!---Modal window-->
+
+                        </div>
+                        <div id="collapse-${result[i].id}"class="panel-collapse collapse">
+                          <div class="panel-body description_inf" >
+                            <label for="name_place"> Назва:
+                              <p class="name_place">${result[i].name ? result[i].name : 'Інформація відсутня'}</p>
+                            </label>
+                            <label for="name_district"> Район:
+                              <p class="name_district">${result[i].district ? result[i].district  : 'Інформація відсутня'}</p>
+                            </label>
+                            <label for="name_stan"> Стан:
+                              <p class="name_stan">${result[i].category ? result[i].category : 'Інформація відсутня' }</p>
+                            </label>
+                            <label for="name_description"> Опис:
+                              <p class="name_description">${result[i].description ? result[i].description : 'Інформація відсутня'}</p>
+                            </label>
+                             <label for="name_solve"> Рішення:
+                              <p class="name_solve">${result[i].solution ? result[i].solution : 'Інформація відсутня'}</p>
+                            </label>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            `
+            numberWer++;
+            }
+            
+            $('#accordion').html(html);
+            setButtons();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log('Помилка: ' + xhr + thrownError);
         }
     });
+
+    
+}
+
+function setButtons(){
+    var modal = document.getElementById('myModal');
+
+
+$('.myBtn').click(function(event)
+ {
+  modal.style.display = "block";
+ });
+
+
+$('.close, .registration').click(function(event)
+ {
+  modal.style.display = "none";
+ });
+$(window).click(function(event)
+ {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+ });
 }
 
 // login user
 function login(data) {
     $.ajax({
-        url: host + '/api/user',
+        url: host + '/api/user/' + data.email,
         type: 'GET',
         contentType: "application/json",
-        data: {
-            email: data.email
-        },
+        data: { },
         crossDomain: true,	
         headers: {  'Access-Control-Allow-Origin': '*' },	
         success: function (result, textStatus, xhr) {
