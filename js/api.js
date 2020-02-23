@@ -1,4 +1,4 @@
-let host = 'https://cleanfix.herokuapp.com';
+let host = 'https://cleanfix-back-end.herokuapp.com/';
 //let host = 'http://localhost:63996'
 
 $(document).ready(function(){
