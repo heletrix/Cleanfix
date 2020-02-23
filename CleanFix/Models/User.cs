@@ -1,4 +1,6 @@
-﻿namespace CleanFix.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CleanFix.Models
 {
     public class User
     {
