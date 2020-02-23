@@ -16,6 +16,7 @@ $(document).ready(function(){
     })
 
     $('#create-project-form').submit(function(event){
+        console.log(document.querySelector('img').src);
         createProject(serializeFormJSON($(this)), document.querySelector('img').src) 
         event.preventDefault();
     })
