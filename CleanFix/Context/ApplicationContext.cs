@@ -11,9 +11,16 @@ namespace CleanFix.Context
     {
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<ProjectSponsor> ProjectSponsors { get; set; }
+
+        public DbSet<ProjectVolunteer> ProjectVolunteers { get; set; }
+
         public DbSet<Sponsor> Sponsors { get; set; }
 
         public DbSet<Volunteer> Volunteers { get; set; }
+        
+        public DbSet<User> Users { get; set; }
+
 
         public ApplicationContext()
         {
