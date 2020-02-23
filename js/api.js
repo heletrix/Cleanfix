@@ -28,7 +28,7 @@ function createUser(userArray) {
         url: host + '/api/user',
         type: 'POST',
         contentType: "application/json",
-        data: {
+        data: JSON.stringify({
             name: userArray[1].value, // Прізвище ім'я по-батькові
             lastName: userArray[0].value,
             middleName: userArray[2].value,
@@ -36,7 +36,7 @@ function createUser(userArray) {
             email: userArray[4].value,
             phoneNumber: userArray[3].value, // optional
             password: userArray[5].value
-        },
+        }),
         crossDomain: true,		
         success: function (result, textStatus, xhr) {
 
@@ -64,13 +64,13 @@ function createUserSponsor(userArray) {
         url: host + '/api/user',
         type: 'POST',
         contentType: "application/json",
-        data: {
+        data: JSON.stringify({
             companyName: userArray[0].value, 
             type: 1, // 0 - person, 1 - company
             email: userArray[2].value,
             phoneNumber: userArray[1].value, // optional
             password: userArray[3].value
-        },
+        }),
         crossDomain: true,		
         success: function (result, textStatus, xhr) {
 
@@ -97,7 +97,7 @@ function createProject(data, imgBase64) {
         url: host + '/api/project',
         type: 'POST',
         contentType: "application/json",
-        data: JSON. stringify({
+        data: JSON.stringify({
             name: data.name,
             description: data.description,
             category: data.category,
