@@ -1,4 +1,4 @@
-let host = 'http://localhost:63996';
+let host = 'http://localhost:63995';
 // var mainPhotoForCreatedProject = null;
 
 $(document).ready(function(){
@@ -97,6 +97,7 @@ function createProject(data, imgBase64) {
         url: host + '/api/project',
         type: 'POST',
         contentType: "application/json",
+        dataType: "json",
         data: JSON.stringify({
             name: data.name,
             description: data.description,

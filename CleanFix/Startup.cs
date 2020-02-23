@@ -49,9 +49,10 @@ namespace CleanFix
 					await next();
 				}
 			});
-			app.UseMvcWithDefaultRoute();
 
 			app.UseCors(MyAllowSpecificOrigins);
+
+			app.UseMvcWithDefaultRoute();
 
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
