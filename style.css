@@ -141,3 +141,30 @@ label{
   background-color: #6383a8;
  
 }
+
+#mainPhoto {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#mainPhoto  + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: black;
+  background-color: #D3D3D3;
+  display: inline-block;
+}
+
+#mainPhoto :focus + label,
+#mainPhoto  + label:hover {
+  background-color: #6383a8;
+  color: white;
+}
+
+#mainPhoto  + label {
+	cursor: pointer; /* "hand" cursor */
+}

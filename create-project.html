@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li><a href="./main.html">Головна</a></li>
                <li><a href="#services">Проект</a></li>
-              <li><a href="#">Стати волонтером</a></li>
+              <li><a href=".volonter.html">Стати волонтером</a></li>
               <li><a href="./sponsor.html">Стати спонсором</a></li>
               <li><a href="#contact">Вхід</a></li>
             </ul>
@@ -41,23 +41,26 @@
         
        <div class="main_sponsor_form">
          <div class="container">
-              <form action="" id="volunteer-form">
-              <label for="surname">Прізвище</label>
-              <input class="input-form" type="text" id="surname"  name="surname" placeholder="Василенко" required="">
-              <label for="name">Ім'я</label>
-              <input class="input-form" type="text" id="name" name="name" placeholder="Петро" required="">
-              <label for="father">По баткові </label>
-              <input class="input-form" type="text" id="middlename" name="middlename" placeholder="Іванович">
-              <label for="phone">Телефон </label>
-              <input class="input-form" type="text" id="telephone" name="telephone" placeholder="+380673784511">
-               <label for="phone">E-mail </label>
-              <input class="input-form" type="text" id="email" name="email" placeholder="user@gmail.com">
-              <label for="phone">Пароль </label>
-              <input class="input-form" type="text" id="password" name="password" placeholder="*********">
-              <label for="phone"> Повторіть пароль </label>
-              <input class="input-form" type="text" id="repeat-password" name="repeat-password" placeholder="*********">
-
-              <button class="registration" type="submit" value="Submit" > Стати волонтером </button>
+              <form action="" id="create-project-form">
+              <label for="name">Назва проєкту</label>
+              <input class="input-form" type="text" id="name"  name="name" placeholder="" required="">
+              <label for="district">Район</label>
+              <input class="input-form" type="text" id="district" name="district" placeholder="" required="">
+              <label for="location">Локація</label>
+              <input class="input-form" type="text" id="location" name="location" placeholder="">
+              <label for="category">Стан</label>
+              <input class="input-form" type="text" id="category" name="category" placeholder="">
+              <label for="description">Опис проблеми</label>
+              <textarea  class="input-form" rows=5 id="description" name="description" placeholder=""></textarea>
+                <label for="solution">Рішення</label>
+              <textarea  class="input-form" rows=5 id="solution" name="solution" placeholder=""></textarea>
+              <label for="budget">Орієнтовна вартість</label>
+              <input class="input-form" type="number" step="0.01" id="budget" name="budget" placeholder="" >
+              
+              <input class="input-form" type="file" id="mainPhoto" name="mainPhoto" placeholder="" onchange="previewFile()">
+              <label for="mainPhoto">Завантажити фото</label>
+              <img src="" height="200" width="200" alt="Додайте фото" hidden>
+              <button class="registration" type="submit" value="Submit" > Додати проєкт </button>
 
 
       </form>

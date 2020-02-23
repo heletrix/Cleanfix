@@ -13,7 +13,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/parallax.min.js"></script>
     <script src="js/wow.js"></script>
-  
+    <script src="js/api.js"></script>
 </head>
 <body>
 	
@@ -29,10 +29,10 @@
           </div>
           <div id="nav"class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#header">Головна</a></li>
+              <li><a href="./main.html">Головна</a></li>
                <li><a href="#services">Проект</a></li>
-              <li><a href="#production">Стати волонтером</a></li>
-              <li><a href="#about">Стати спонсором</a></li>
+              <li><a href="./volonter.html">Стати волонтером</a></li>
+              <li><a href="#">Стати спонсором</a></li>
               <li><a href="#contact">Вхід</a></li>
             </ul>
            </div>
@@ -41,24 +41,19 @@
 
        <div class="main_sponsor_form">
          <div class="container">
-              <form action="">
+              <form action="" id="sponsor-form">
               <label for="name">Назва компанії</label>
-              <input class="input-form" type="text" id="name"placeholder="Epam" required="">
-              <label for="email">E-Mail</label>
-              <input class="input-form" type="text" id="e-mail"placeholder="example@gmail.com" required="">
-              <label for="phone">Пароль </label>
-              <input class="input-form" type="text" id="password"placeholder="password">
+              <input class="input-form" type="text" id="name" name='name' placeholder="Epam" required="">
               <label for="phone">Телефон </label>
-              <input class="input-form" type="number" id="telephone"placeholder="+380673784511">
-              <label for="phone">Логін </label>
-              <input class="input-form" type="number" id="telephone"placeholder="username123">
+              <input class="input-form" type="text" id="telephone" name="telephone" placeholder="+380673784511">
+               <label for="phone">E-mail </label>
+              <input class="input-form" type="text" id="email" name="email" placeholder="user@gmail.com">
               <label for="phone">Пароль </label>
-              <input class="input-form" type="text" id="telephone"placeholder="*********">
+              <input class="input-form" type="text" id="password" name="password" placeholder="*********">
               <label for="phone"> Повторіть пароль </label>
-              <input class="input-form" type="text" id="telephone"placeholder="*********">
+              <input class="input-form" type="text" id="repeat-password" name="repeat-password" placeholder="*********">
 
-              <button class="registration" type="button"
-             value=""> Реєстрація </button>
+              <button class="registration" type="submit" value="Submit"> Реєстрація </button>
 
 
       </form>
