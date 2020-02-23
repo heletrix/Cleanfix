@@ -1,4 +1,4 @@
-let host = 'http://localhost:63996';
+let host = 'https://cleanfix-back-end.herokuapp.com/';
 
 $(document).ready(function(){
     if ($('#accordion')) {
