@@ -143,7 +143,7 @@ namespace CleanFix.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(Project project)
+        public ActionResult Post([FromBody]Project project)
         {
             using (var db = new ApplicationContext())
             {
