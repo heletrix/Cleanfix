@@ -164,10 +164,20 @@ namespace CleanFix.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ProjectId1")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("ProjectId1");
 
                     b.ToTable("Users");
                 });
@@ -191,6 +201,17 @@ namespace CleanFix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Volunteers");
+                });
+
+            modelBuilder.Entity("CleanFix.Models.User", b =>
+                {
+                    b.HasOne("CleanFix.Models.Project", null)
+                        .WithMany("Sponsors")
+                        .HasForeignKey("ProjectId");
+
+                    b.HasOne("CleanFix.Models.Project", null)
+                        .WithMany("Volunteers")
+                        .HasForeignKey("ProjectId1");
                 });
 #pragma warning restore 612, 618
         }

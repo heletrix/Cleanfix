@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace CleanFix.Models
     public class Project
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -35,5 +37,8 @@ namespace CleanFix.Models
 
         public int? TotalVolunteers { get; set; }
 
+        public IEnumerable<User> Sponsors { get; set; }
+
+        public IEnumerable<User> Volunteers { get; set; }
     }
 }
