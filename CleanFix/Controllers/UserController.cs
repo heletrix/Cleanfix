@@ -11,7 +11,7 @@ namespace CleanFix.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
-        public ActionResult Add(User user)
+        public ActionResult Add([FromBody]User user)
         {
             if (string.IsNullOrWhiteSpace(user.Email))
             {
