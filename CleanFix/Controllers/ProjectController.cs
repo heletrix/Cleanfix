@@ -15,9 +15,9 @@ namespace CleanFix.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            using (var db =new ApplicationContext())
+            using (var db = new ApplicationContext())
             {
-                var projects = db.Projects.ToList();
+                var projects = db.Projects.Join(db.ProjectSponsors, x => x.Id, p => p.ProjectId, (post, meta) => new { Post = post, Meta = meta }).ToList();
                 return new JsonResult(projects);
             }
             
