@@ -35,5 +35,8 @@ namespace CleanFix.Models
 
         public int? TotalVolunteers { get; set; }
 
+        public IEnumerable<User> Sponsors { get; set; }
+
+        public IEnumerable<User> Volunteers { get; set; }
     }
 }
