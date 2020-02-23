@@ -16,7 +16,7 @@ namespace CleanFix.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-           
+
             var projectList = new List<Project>();
             using (var db = new ApplicationContext())
             {
@@ -24,7 +24,7 @@ namespace CleanFix.Controllers
 
                 foreach (var pr in projects)
                 {
-                    List<User> spons = new List<User>(); 
+                    List<User> spons = new List<User>();
                     List<User> vols = null;
                     using (var db2 = new ApplicationContext())
                     {
@@ -36,7 +36,8 @@ namespace CleanFix.Controllers
                                 using (var db3 = new ApplicationContext())
                                 {
 
-                                    spons.Add(new Models.User() {  
+                                    spons.Add(new Models.User()
+                                    {
                                         Id = 1,
                                         Email = "lu.zin.kpi@gmail.com",
                                         CompanyName = "TestCompany",
@@ -99,7 +100,7 @@ namespace CleanFix.Controllers
                     {
                         using (var db3 = new ApplicationContext())
                         {
-                            
+
                             spons.Add(new Models.User()
                             {
                                 Id = 1,
@@ -139,6 +140,19 @@ namespace CleanFix.Controllers
                 return new JsonResult(project);
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult Post(Project project)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var pr = db.Projects;
+                pr.Add(project);
+                db.SaveChanges();
+            }
+
+            return Ok();
         }
     }
 }
